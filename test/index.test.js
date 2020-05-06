@@ -1,9 +1,11 @@
 const { products } = require("../src/data/products");
 const {
+  promotions,
   getShoppingCart,
   getProductInfos,
   getAllProductsInfos,
   getCartPromotion,
+  getProductPrice,
 } = require("../src");
 
 const exemplo1Mock = {
@@ -133,5 +135,43 @@ describe("Get Cart Promotion", () => {
     const response = getCartPromotion(products);
 
     expect(response).toEqual(exemplo4Mock.promotion);
+  });
+});
+
+describe("Get Product Price", () => {
+  it("Deve retornar o preço do produto conforme nenhuma promoção aplicada", () => {
+    const price = getProductPrice(products[0].name, products);
+
+    expect(price).toBe(products[0].regularPrice);
+  });
+
+  it(`Deve retornar o preço do produto conforme promoção ${promotions[0]}`, () => {
+    const price = getProductPrice(products[0].name, products, promotions[0]);
+
+    expect(price).toBe(products[0].promotions[0].price);
+  });
+
+  it(`Deve retornar o preço do produto conforme promoção ${promotions[1]}`, () => {
+    const price = getProductPrice(products[0].name, products, promotions[1]);
+
+    expect(price).toBe(products[0].promotions[0].price);
+  });
+
+  it(`Deve retornar o preço do produto conforme promoção ${promotions[2]}`, () => {
+    const price = getProductPrice(products[0].name, products, promotions[2]);
+
+    expect(price).toBe(products[0].promotions[1].price);
+  });
+
+  it(`Deve retornar o preço do produto conforme promoção ${promotions[3]}`, () => {
+    const price = getProductPrice(products[0].name, products, promotions[3]);
+
+    expect(price).toBe(products[0].promotions[1].price);
+  });
+
+  it("Deve retornar o regular price quando o produto não entrar em uma promoção", () => {
+    const price = getProductPrice(products[3].name, products, promotions[0]);
+
+    expect(price).toBe(products[3].regularPrice);
   });
 });

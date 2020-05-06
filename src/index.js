@@ -42,9 +42,25 @@ function getCartPromotion(products) {
   }
 }
 
+function getProductPrice(productName, productsList, promotion) {
+  const product = productsList.find((product) => productName === product.name);
+
+  if (!promotion) {
+    return product.regularPrice;
+  } else {
+    const { promotions } = product;
+    const { price } =
+      promotions.filter(({ looks }) => looks.includes(promotion))[0] || {};
+
+    return price ? price : product.regularPrice;
+  }
+}
+
 module.exports = {
+  promotions,
   getShoppingCart,
   getProductInfos,
   getAllProductsInfos,
   getCartPromotion,
+  getProductPrice,
 };
