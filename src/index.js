@@ -16,33 +16,29 @@ function getAllProductsInfos(ids, productsList) {
 }
 
 function getCartPromotion(products) {
-  let categories = [];
-  if (products.length > 1) {
-    categories = products.map(({ category }) => category);
-  } else {
-    categories = products.category;
-  }
+  const productsLength = products.length;
 
-  const filterCategories = [];
+  const categories =
+    productsLength > 1
+      ? products.map(({ category }) => category)
+      : products.category;
 
-  categories.forEach((cat) => {
-    if (!filterCategories.includes(cat)) {
-      filterCategories.push(cat);
+  const amountCategories = categories.reduce((acc, cat) => {
+    return acc.includes(cat) ? acc : [...acc, cat];
+  }, []).length;
+
+  if (productsLength > 1) {
+    switch (amountCategories) {
+      case 1:
+        return promotions[0];
+      case 2:
+        return promotions[1];
+      case 3:
+        return promotions[2];
+      case 4:
+      default:
+        return promotions[3];
     }
-  });
-
-  const amountCategories = filterCategories.length;
-
-  switch (amountCategories) {
-    case 1:
-      return promotions[0];
-    case 2:
-      return promotions[1];
-    case 3:
-      return promotions[2];
-    case 4:
-    default:
-      return promotions[3];
   }
 }
 
