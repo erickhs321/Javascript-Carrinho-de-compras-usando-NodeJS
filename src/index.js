@@ -47,15 +47,11 @@ function getProductPrice(productName, productsList, promotion) {
 
   if (!product) return 0;
 
-  if (!promotion) {
-    return product.regularPrice;
-  } else {
-    const { promotions } = product;
-    const { price } =
-      promotions.filter(({ looks }) => looks.includes(promotion))[0] || {};
+  const { promotions } = product || [];
+  const { price } =
+    promotions.filter(({ looks }) => looks.includes(promotion))[0] || {};
 
-    return price ? price : product.regularPrice;
-  }
+  return !promotion || !price ? product.regularPrice : price;
 }
 
 function getTotalPrice(cartProducts, productList, promotion) {
