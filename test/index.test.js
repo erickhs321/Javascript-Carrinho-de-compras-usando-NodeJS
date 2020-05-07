@@ -7,6 +7,7 @@ const {
   getCartPromotion,
   getProductPrice,
   getTotalPrice,
+  getDiscountValue,
 } = require("../src");
 
 const exemplo1Mock = {
@@ -192,5 +193,17 @@ describe("Get Total Price", () => {
     );
 
     expect(response).toBe(exemplo1Mock.totalPrice);
+  });
+});
+
+describe("Get Discount Value", () => {
+  it("Deve retornar o desconto dos produtos do exemploMock1", () => {
+    const response = getDiscountValue(
+      exemplo1Mock.products,
+      products,
+      exemplo1Mock.totalPrice
+    );
+
+    expect(response).toBe(exemplo1Mock.discountValue);
   });
 });

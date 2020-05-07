@@ -64,6 +64,9 @@ function getTotalPrice(cartProducts, productList, promotion) {
     .toFixed(2);
 }
 
+function getDiscountValue(cartProducts, productList, totalPrice) {
+  return (getTotalPrice(cartProducts, productList) - totalPrice).toFixed(2);
+}
 module.exports = {
   promotions,
   getShoppingCart,
@@ -72,4 +75,5 @@ module.exports = {
   getCartPromotion,
   getProductPrice,
   getTotalPrice,
+  getDiscountValue,
 };
