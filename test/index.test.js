@@ -6,6 +6,7 @@ const {
   getAllProductsInfos,
   getCartPromotion,
   getProductPrice,
+  getTotalPrice,
 } = require("../src");
 
 const exemplo1Mock = {
@@ -173,5 +174,23 @@ describe("Get Product Price", () => {
     const price = getProductPrice(products[3].name, products, promotions[0]);
 
     expect(price).toBe(products[3].regularPrice);
+  });
+
+  it("Deve retornar 0 quando o produto não for encontrado", () => {
+    const price = getProductPrice("blablabla", products, promotions[0]);
+
+    expect(price).toBe(0);
+  });
+});
+
+describe("Get Total Price", () => {
+  it("Deve retornar o preço total dos produtos do exemploMock1", () => {
+    const response = getTotalPrice(
+      exemplo1Mock.products,
+      products,
+      exemplo1Mock.promotion
+    );
+
+    expect(response).toBe(exemplo1Mock.totalPrice);
   });
 });

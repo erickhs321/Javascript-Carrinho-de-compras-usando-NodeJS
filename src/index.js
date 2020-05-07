@@ -45,6 +45,8 @@ function getCartPromotion(products) {
 function getProductPrice(productName, productsList, promotion) {
   const product = productsList.find((product) => productName === product.name);
 
+  if (!product) return 0;
+
   if (!promotion) {
     return product.regularPrice;
   } else {
@@ -56,6 +58,16 @@ function getProductPrice(productName, productsList, promotion) {
   }
 }
 
+function getTotalPrice(cartProducts, productList, promotion) {
+  return cartProducts
+    .reduce(
+      (acc, product) =>
+        acc + getProductPrice(product.name, productList, promotion),
+      0
+    )
+    .toFixed(2);
+}
+
 module.exports = {
   promotions,
   getShoppingCart,
@@ -63,4 +75,5 @@ module.exports = {
   getAllProductsInfos,
   getCartPromotion,
   getProductPrice,
+  getTotalPrice,
 };
