@@ -1,7 +1,19 @@
 const promotions = ["SINGLE LOOK", "DOUBLE LOOK", "TRIPLE LOOK", "FULL LOOK"];
 
 function getShoppingCart(ids, productsList) {
-  return {};
+  const products = getAllProductsInfos(ids, productsList);
+  const promotion = getCartPromotion(products);
+  const totalPrice = getTotalPrice(products, productsList, promotion);
+  const discountValue = getDiscountValue(products, productsList, totalPrice);
+  const discount = getDiscountPercent(totalPrice, discountValue);
+
+  return {
+    products,
+    promotion,
+    totalPrice,
+    discountValue,
+    discount,
+  };
 }
 
 function getProductInfos(id, productsList) {

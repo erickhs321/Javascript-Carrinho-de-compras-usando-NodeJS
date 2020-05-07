@@ -68,31 +68,31 @@ const exemplo4Mock = {
   discount: "14.21%",
 };
 
-// describe("Get Shopping Cart", () => {
-//   it("Deve retornar um carrinho de compras a partir do array de IDs do exemplo 1", () => {
-//     const cart = getShoppingCart([120, 230, 310, 490], products);
+describe("Get Shopping Cart", () => {
+  it("Deve retornar um carrinho de compras a partir do array de IDs do exemplo 1", () => {
+    const cart = getShoppingCart([120, 230, 310, 490], products);
 
-//     expect(cart).toEqual(exemplo1Mock);
-//   });
+    expect(cart).toEqual(exemplo1Mock);
+  });
 
-//   it("Deve retornar um carrinho de compras a partir do array de IDs do exemplo 2", () => {
-//     const cart = getShoppingCart([130, 140, 230, 260], products);
+  it("Deve retornar um carrinho de compras a partir do array de IDs do exemplo 2", () => {
+    const cart = getShoppingCart([130, 140, 230, 260], products);
 
-//     expect(cart).toEqual(exemplo2Mock);
-//   });
+    expect(cart).toEqual(exemplo2Mock);
+  });
 
-//   it("Deve retornar um carrinho de compras a partir do array de IDs do exemplo 3", () => {
-//     const cart = getShoppingCart([110, 120, 130, 140], products);
+  it("Deve retornar um carrinho de compras a partir do array de IDs do exemplo 3", () => {
+    const cart = getShoppingCart([110, 120, 130, 140], products);
 
-//     expect(cart).toEqual(exemplo3Mock);
-//   });
+    expect(cart).toEqual(exemplo3Mock);
+  });
 
-//   it("Deve retornar um carrinho de compras a partir do array de IDs do exemplo 4", () => {
-//     const cart = getShoppingCart([110, 130, 140, 230, 310, 330], products);
+  it("Deve retornar um carrinho de compras a partir do array de IDs do exemplo 4", () => {
+    const cart = getShoppingCart([110, 130, 140, 230, 310, 330], products);
 
-//     expect(cart).toEqual(exemplo4Mock);
-//   });
-// });
+    expect(cart).toEqual(exemplo4Mock);
+  });
+});
 
 describe("Get Product Infos", () => {
   it("Deve retornar o nome e categoria do produto de id 110", () => {
