@@ -67,6 +67,16 @@ function getTotalPrice(cartProducts, productList, promotion) {
 function getDiscountValue(cartProducts, productList, totalPrice) {
   return (getTotalPrice(cartProducts, productList) - totalPrice).toFixed(2);
 }
+
+function getDiscountPercent(totalPrice, discountValue) {
+  const discount = (
+    100 -
+    (+totalPrice / (+totalPrice + +discountValue)) * 100
+  ).toFixed(2);
+
+  return `${discount}%`;
+}
+
 module.exports = {
   promotions,
   getShoppingCart,
@@ -76,4 +86,5 @@ module.exports = {
   getProductPrice,
   getTotalPrice,
   getDiscountValue,
+  getDiscountPercent,
 };
